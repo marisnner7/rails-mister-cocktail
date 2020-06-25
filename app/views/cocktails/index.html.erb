@@ -1,8 +1,8 @@
-<div data-aos="fade-up">
-
-  <% @cocktails.each do |cocktail| %>
+<% @cocktails.each do |cocktail| %>
+  <%= link_to cocktail_path(cocktail) do %>
   <%= cocktail.name %>
-  <% end %>
+<% end %>
+<% end %>
 
-</div>
+
 
