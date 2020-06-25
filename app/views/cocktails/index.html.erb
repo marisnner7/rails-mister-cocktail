@@ -1,8 +1,26 @@
-<% @cocktails.each do |cocktail| %>
-  <%= link_to cocktail_path(cocktail) do %>
-  <%= cocktail.name %>
-<% end %>
-<% end %>
+<div class="home-banner">
+  <%= link_to image_tag("banner.jpeg")  %>
+  <h1>Harry Portions</h1>
+    <p>
+      <span id="banner-typed-text"></span>
+    </p>
+</div>
+
+<div class="cards">
+  <% @cocktails.each do |cocktail| %>
+    <%= link_to cocktail_path(cocktail) do %>
+      <div class="card-category">
+       <p><%= cocktail.name %></p>
+      </div>
+   <% end %>
+  <% end %>
+
+  <%= link_to new_cocktail_path do %>
+    <div class="card-category add">
+      <p>And new portion</p>
+    </div>
+  <% end %>
+</div>
 
 
 
