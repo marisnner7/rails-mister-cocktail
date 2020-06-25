@@ -3,10 +3,16 @@ class CocktailsController < ApplicationController
 
   def index
     @cocktails = Cocktail.all
+
   end
 
   def show
-
+    @doses = Dose.where(cocktail_id: @cocktail)
+    @ingredients = []
+    @doses.each do |dose|
+      @cocktail = Cocktail.find(dose.cocktail_id)
+      @ingredients << Ingredient.find(dose.ingredient_id)
+    end
   end
 
 
@@ -27,6 +33,13 @@ class CocktailsController < ApplicationController
   def edit
 
   end
+
+  def update
+    @cocktail.update(cocktails_params)
+
+    redirect_to cocktail_path
+  end
+
 
   private
 
