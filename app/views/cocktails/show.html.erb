@@ -1,1 +1,9 @@
 <h1><%= @cocktail.name %></h1>
+
+<p><%= @cocktail.description %></p>
+
+<%= link_to edit_cocktail_path(@cocktail) do %>
+<i class="far fa-edit">
+<% end %>
+
+<%= link_to "Home Page", cocktails_path, class: 'btn btn-secondary' %>
