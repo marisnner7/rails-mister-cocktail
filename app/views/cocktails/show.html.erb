@@ -2,9 +2,9 @@
 
     <h1><%= @cocktail.name %></h1>
       <div class="img-show">
-        <%# if @cocktail.photo %>
-          <%#= cl_image_tag @cocktail.photo.key, crop: :fill %>
-        <%# end %>
+        <% if @cocktail.photo %>
+          <%= cl_image_tag @cocktail.photo.key, crop: :fill %>
+        <% end %>
       </div>
     <hr>
 
@@ -28,6 +28,10 @@
          <% end %>
       </div>
 
+
+    <div class="alert alert-danger" role="alert">
+  A simple danger alert—check it out!
+</div>
 
       <%# @ing_dose_pair.each do |ingredient, dose| %>
           <p><%#= ingredient.name %> - <%#= dose.description %>
