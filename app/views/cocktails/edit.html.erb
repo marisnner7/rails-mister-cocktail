@@ -1,7 +1,11 @@
-<%= simple_form_for @cocktail do |f| %>
-  <div class="input-color">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.submit class: 'btn btn-primary' %>
-  </div>
-<% end %>
+
+<div class="getting-margin">
+  <%= simple_form_for @cocktail do |f| %>
+    <div class="input-color">
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :photo, as: :file , hint: 'We Recomend PNG vector images' %>
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

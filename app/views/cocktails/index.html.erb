@@ -5,24 +5,16 @@
     </p>
 </div>
 
-
 <div class="fixing-the-card">
   <div class="cards">
     <% @cocktails.each do |cocktail| %>
       <%= link_to cocktail_path(cocktail) do %>
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0)), url('<%= cl_image_path cocktail.photo.key, height: 300, width: 400, crop: :fill %>')">
-         <p><%= cocktail.name %></p>
-        </div>
-     <% end %>
-    <% end %>
-
-
-   <%= link_to new_cocktail_path, class: "my-2 my-sm-0 ml-2" do%>
-        <div class="card-category add" style="background-size: 25% 17%; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0)), url(<%= asset_path("plus.png") %>)">
-          <p> Add a Portion</p>
+          <p><%= cocktail.name %><p>
         </div>
       <% end %>
+    <% end %>
+      <%= link_to new_cocktail_path, class: "my-2 my-sm-0 ml-2" do%>
+          <p> Add a drink</p>
+      <% end %>
   </div>
-
-
-</div>
