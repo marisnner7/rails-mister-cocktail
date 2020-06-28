@@ -3,7 +3,20 @@ class CocktailsController < ApplicationController
 
   def index
     @cocktails = Cocktail.all
-
+    @cocktails = Cocktail.all
+    if params[:search]
+      if params[:search][:query]
+        @cocktailresult = Cocktail.find_by(name: params[:search][:query])
+        if @cocktailresult
+          redirect_to cocktail_path(@cocktailresult)
+        else
+          # redirect_to action:'index', alert: "Cocktail not found"
+          # flash.alert
+          flash[:error] = 'Cocktail not found'
+          redirect_to action:'index', danger: "Cocktail not found"
+        end
+      end
+    end
   end
 
   def show
@@ -13,8 +26,8 @@ class CocktailsController < ApplicationController
       @cocktail = Cocktail.find(dose.cocktail_id)
       @ingredients << Ingredient.find(dose.ingredient_id)
     end
+    @ing_dose_pair = @ingredients.zip(@doses)
   end
-
 
   def new
     @cocktail = Cocktail.new
@@ -23,15 +36,14 @@ class CocktailsController < ApplicationController
   def create
     @cocktail = Cocktail.new(cocktails_params)
     @cocktail.save
-        if @cocktail.save
-          redirect_to cocktail_path(@cocktail)
-        else
-          render :new
-        end
+    if @cocktail.save
+      redirect_to cocktail_path(@cocktail)
+    else
+      render :new
+    end
   end
 
   def edit
-
   end
 
   def update
@@ -40,6 +52,12 @@ class CocktailsController < ApplicationController
     redirect_to cocktail_path
   end
 
+  def destroy
+    @cocktail = Cocktail.find(params[:id])
+    redirect_to cocktail_path(@cocktail)
+    @cocktail.destroy
+
+  end
 
   private
 
@@ -47,11 +65,7 @@ class CocktailsController < ApplicationController
     @cocktail = Cocktail.find(params[:id])
   end
 
-
   def cocktails_params
     params.require(:cocktail).permit(:name, :description, :photo)
   end
-
-
-
 end

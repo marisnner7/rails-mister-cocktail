@@ -2,7 +2,7 @@ import Typed from 'typed.js';
 
 const loadDynamicBannerText = () => {
   new Typed('#banner-typed-text', {
-    strings: ["Welcome to Hogsmeade", "Order a Drink"],
+    strings: ["Order a Potion", "We love mystery"],
     typeSpeed: 50,
     loop: true
   });
