@@ -1,8 +1,8 @@
 <div class="getting-margin">
   <%= simple_form_for @cocktail do |f| %>
     <div class="input-color">
-      <%= f.input :name %>
-      <%= f.input :description, hint: 'How to make the cocktail' %>
+      <%= f.input :name, hint: "Name for your potion" %>
+      <%= f.input :description, hint: 'How to make the potion' %>
       <%= f.input :photo, as: :file, hint: 'We Recomend PNG vector images' %>
       <%= f.submit class: 'btn btn-primary' %>
     </div>

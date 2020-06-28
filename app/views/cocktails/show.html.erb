@@ -1,37 +1,50 @@
-<div class="getting-margin">
+<div class="super-form">
+  <div class="getting-margin">
+        <h1><%= @cocktail.name.capitalize! %></h1>
+        <div class="img-show">
+          <% if @cocktail.photo %>
+            <%= cl_image_tag @cocktail.photo.key, crop: :fill %>
+          <% end %>
+        </div>
+      <hr>
 
-    <h1><%= @cocktail.name %></h1>
-      <div class="img-show">
-        <% if @cocktail.photo %>
-          <%= cl_image_tag @cocktail.photo.key, crop: :fill %>
+
+
+
+      <div class="show-description-card">
+        <div class="show-description-card-header">
+          <h2> How to do it</h2>
+          <%= link_to edit_cocktail_path(@cocktail) do %>
+            <i class="far fa-edit"></i>
+          <% end %>
+        </div>
+        <p><%= @cocktail.description %></p>
+      </div>
+
+
+      <div class="card-ingredient" >
+        <div class="card-ingredient-header">
+          <h2>Ingredients</h2>
+           <%= link_to new_cocktail_dose_path(@cocktail) do %>
+            <i class="fas fa-plus"></i>
+           <% end %>
+        </div>
+
+        <% @ing_dose_pair.each do |ingredient, dose| %>
+            <p><%= ingredient.name %> - <%= dose.description %>
+              <%= link_to cocktail_dose_path(@cocktail, dose), method:'DELETE', data: { confirm: "Are you sure?" } do %>
+                <i class="fas fa-trash"></i>
+              <% end %>
+            </p>
         <% end %>
       </div>
-    <hr>
-
-
-    <div class="show-description-card">
-      <div class="show-description-card-header">
-        <h2> How to do it</h2>
-        <%= link_to edit_cocktail_path(@cocktail) do %>
-          <i class="far fa-edit"></i>
-        <% end %>
-      </div>
-      <p><%= @cocktail.description %></p>
-    </div>
-
-
-    <div class="card-ingredient" >
-      <div class="card-ingredient-header">
-        <h2>Ingredients</h2>
-         <%= link_to new_cocktail_dose_path(@cocktail) do %>
-          <i class="fas fa-plus"></i>
-         <% end %>
-      </div>
 
 
 
 
-  <%= link_to "Home Page", cocktails_path, class: 'btn btn-secondary' %>
+    <%= link_to 'HomePage', cocktails_path , class:'btn btn-secondary' %>
+
+  </div>
 
 </div>
 
