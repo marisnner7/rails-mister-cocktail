@@ -8,6 +8,32 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+body {
+  background: #1A1A1A;
+  font-family: 'Charm', cursive;
+
+}
+
+h1, h2, h3, p {
+  color: white;
+  font-family: 'Charm', cursive;
+}
+
+h1{
+  padding:8px;
+}
+.getting-margin {
+  margin-top:120px;
+  padding:4px;
+}
+
+
+.getting-margin p {
+  margin:24px;
+}
