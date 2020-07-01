@@ -19,5 +19,10 @@ Ingredient.create(name: 'Pumpkin Juice')
 Ingredient.create(name: 'Fudge Flies')
 
 
+file = URI.open('https://res.cloudinary.com/dunoktrky/image/upload/v1593621387/harry%20portion/butterbeer_jsex8i.jpg')
+butterbear = Cocktail.new(name: 'butterbear', description: "A great console")
+butterbear.photo.attach(io: file, filename: 'nes.jpg', content_type: 'image/jpg')
+
+
 puts 'Done!'
 
