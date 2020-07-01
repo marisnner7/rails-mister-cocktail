@@ -13,7 +13,6 @@
   <ul class="cards">
     <% @cocktails.each do |cocktail| %>
     <li class="card-product">
-      <img src="<%= cl_image_path cocktail.photo.key %>" />
       <div class="card-product-infos">
         <h2><%= link_to cocktail.name, cocktail %></h2>
         <p><%= cocktail.description %></p>
