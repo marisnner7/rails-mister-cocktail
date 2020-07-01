@@ -10,17 +10,20 @@
   </div>
 
 <div>
-  <ul class="cards">
-    <% @cocktails.each do |cocktail| %>
-    <li class="card-product">
-      <div class="card-product-infos">
-        <h2><%= link_to cocktail.name, cocktail %></h2>
-        <p><%= cocktail.description %></p>
-      </div>
-    </li>
-    <% end %>
-  </ul>
+   <ul class="cards">
+      <% @cocktails.each do |cocktail| %>
+
+      <li class="card-product">
+        <div class="card-product-infos">
+            <img src="<%= cl_image_path cocktail.photo.key %>" />
+          <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
+          <p><%= cocktail.description %></p>
+        </div>
+      </li>
+      <% end %>
+    </ul>
 </div>
+
 
 
 
