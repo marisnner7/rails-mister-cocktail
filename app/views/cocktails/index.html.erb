@@ -1,23 +1,27 @@
-<div class="home-banner">
-  <h1>Harry Potions</h1>
-    <p>
-      <span id="banner-typed-text"></span>
-    </p>
+  <div class="banner">
+    <div class="container-ban">
+      <h1>All Our Potions[<%= @cocktails.count %>]</h1>
+      <p><em id="navbar-typed-text"></em></p>
+    </div>
+  </div>
+
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+    <p class="btn btn-dark"><%= link_to 'Create Your Potion', new_cocktail_path %></p>
+  </div>
+
+<div>
+  <ul class="cards">
+    <% @cocktails.each do |cocktail| %>
+    <li class="card-product">
+      <img src="<%= cl_image_path cocktail.photo.key %>" />
+      <div class="card-product-infos">
+        <h2><%= link_to cocktail.name, cocktail %></h2>
+        <p><%= cocktail.description %></p>
+      </div>
+    </li>
+    <% end %>
+  </ul>
 </div>
 
 
-<div class="fixing-the-card">
-  <div class="cards">
-    <% @cocktails.each do |cocktail| %>
-      <%= link_to cocktail_path(cocktail) do %>
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0)), url('<%= cl_image_path cocktail.photo.key, height: 300, width: 400, crop: :fill %>')">
-          <p><%= cocktail.name %><p>
-        </div>
-      <% end %>
-    <% end %>
-      <%= link_to new_cocktail_path, class: "my-2 my-sm-0 ml-2" do%>
-        <div class="card-category add" style="background-size: 25% 17%; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0)), url(<%= asset_path("plus.png") %>)">
-          <p> Add a Potion</p>
-        </div>
-      <% end %>
-  </div>
+

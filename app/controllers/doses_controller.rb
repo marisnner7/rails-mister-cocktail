@@ -1,37 +1,37 @@
 class DosesController < ApplicationController
-  before_action :find_cocktail, only: [:new , :create, :destroy]
+  before_action :set_dose, only: [:destroy] # [:show, :edit, :update]
 
   def new
+    @cocktail = Cocktail.find(params[:cocktail_id])
     @dose = Dose.new
+    @dose.cocktail = @cocktail
   end
 
   def create
+    @cocktail = Cocktail.find(params[:cocktail_id])
     @dose = Dose.new(dose_params)
     @dose.cocktail = @cocktail
-      if @dose.save
-        redirect_to cocktail_path(@cocktail)
-      else
-          render :new
-      end
-
+    if @dose.save
+      redirect_to cocktails_path(@cocktail), notice: 'dose was successfully created.'
+    else
+      render 'new'
+    end
   end
 
+  # DELETE /doses/1
   def destroy
-    @dose = Dose.find(params[:id])
-    redirect_to cocktail_path(@cocktail)
     @dose.destroy
+    redirect_to cocktail_path(@dose.cocktail), notice: 'dose was successfully destroyed.'
   end
-
-
 
   private
-
-  def find_cocktail
-    @cocktail = Cocktail.find(params[:cocktail_id])
+  # Use callbacks to share common setup or constraints between actions.
+  def set_dose
+    @dose = Dose.find(params[:id])
   end
 
+  # Only allow a trusted parameter "white list" through.
   def dose_params
     params.require(:dose).permit(:description, :ingredient_id)
   end
-
 end

@@ -5,18 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts "Destroying All Cocktails"
+require 'open-uri'
+require 'json'
+
+
+puts 'Destroying All Cocktails'
 
 Cocktail.destroy_all
 
-puts "creating.."
-Ingredient.create(name: "spider")
-Ingredient.create(name: "Pumpkin Juice")
-Ingredient.create(name: "Fudge Flies")
-
-butter_beer = Cocktail.create(name: "butter beer")
-butter_beer.save
+puts 'creating..'
+Ingredient.create(name: 'spider')
+Ingredient.create(name: 'Pumpkin Juice')
+Ingredient.create(name: 'Fudge Flies')
 
 
+puts 'Done!'
 
-puts "Done!"

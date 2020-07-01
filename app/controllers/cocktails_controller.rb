@@ -1,71 +1,66 @@
 class CocktailsController < ApplicationController
-  before_action :find_cocktail, only: [:show, :edit, :destroy, :update]
+  before_action :set_cocktail, only: [:show] # [:edit, :update, :destroy]
+  before_action :set_cocktails, only: [:index, :show]
 
+  # GET /cocktails
   def index
-    @cocktails = Cocktail.all
-    @cocktails = Cocktail.all
-    if params[:search]
-      if params[:search][:query]
-        @cocktailresult = Cocktail.find_by(name: params[:search][:query])
-        if @cocktailresult
-          redirect_to cocktail_path(@cocktailresult)
-        else
-          # redirect_to action:'index', alert: "Cocktail not found"
-          # flash.alert
-          flash[:error] = 'Cocktail not found'
-          redirect_to action:'index', danger: "Cocktail not found"
-        end
-      end
-    end
+
   end
 
+  # GET /cocktails/1
   def show
-    @doses = Dose.where(cocktail_id: @cocktail)
-    @ingredients = []
-    @doses.each do |dose|
-      @cocktail = Cocktail.find(dose.cocktail_id)
-      @ingredients << Ingredient.find(dose.ingredient_id)
-    end
-    @ing_dose_pair = @ingredients.zip(@doses)
   end
 
+  # GET /cocktails/new
   def new
     @cocktail = Cocktail.new
   end
 
+  # GET /cocktails/1/edit
+  # def edit
+  # end
+
+  # POST /cocktails
   def create
-    @cocktail = Cocktail.new(cocktails_params)
-    @cocktail.save
+    @cocktail = Cocktail.new(cocktail_params)
+
     if @cocktail.save
-      redirect_to cocktail_path(@cocktail)
+      redirect_to @cocktail, notice: 'cocktail was successfully created.'
     else
       render :new
     end
   end
 
   def edit
+
   end
+  # PATCH/PUT /cocktails/1
+  # -def update
+  # -  if @cocktail.update(cocktail_params)
+  # -    redirect_to @cocktail, notice: 'cocktail was successfully updated.'
+  # -  else
+  # -    render :edit
+  # -  end
+  # -end
 
-  def update
-    @cocktail.update(cocktails_params)
-
-    redirect_to cocktail_path
-  end
-
+  # DELETE /cocktails/1
   def destroy
-    @cocktail = Cocktail.find(params[:id])
-    redirect_to cocktail_path(@cocktail)
     @cocktail.destroy
-
+    redirect_to cocktails_url, notice: 'cocktail was successfully destroyed.'
   end
 
   private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cocktails
+    @cocktails = Cocktail.all
+  end
 
-  def find_cocktail
+  def set_cocktail
     @cocktail = Cocktail.find(params[:id])
   end
 
-  def cocktails_params
-    params.require(:cocktail).permit(:name, :description, :photo)
+  # Only allow a trusted parameter "white list" through.
+  def cocktail_params
+    params.require(:cocktail).permit(:name, :photo)
   end
 end
