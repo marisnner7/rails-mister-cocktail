@@ -19,7 +19,7 @@
   <ul class="cards">
     <% @cocktails.each do |cocktail| %>
     <li class="card-product">
-      <%= cl_image_tag @cocktail.photo.key %>
+      <%= cl_image_tag cocktail.photo.key %>
       <div class="card-product-infos">
         <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
         <p><%= cocktail.description %></p>
